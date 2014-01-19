@@ -1,0 +1,49 @@
+#! /bin/sh
+# /etc/init.d/sononest
+
+### BEGIN INIT INFO
+# Provides:          sononest
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Simple script to start the sononest server
+# Description:       Thanks www.stuffaboutcode.com for the template
+### END INIT INFO
+
+set -e # exit on error
+
+. /lib/lsb/init-functions
+
+NAME="sononest"
+
+PID_FILE=/var/run/${NAME}.pid
+
+mkdir -p /var/log/${NAME}
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    log_daemon_msg "Starting ${NAME}" "${NAME}"
+    start-stop-daemon --start --make-pidfile --pidfile $PID_FILE --chdir /var/log/${NAME} --startas /usr/local/bin/node --name sononest --background -- /home/pi/SonosColorRoom/sononest >> /var/log/venueserver.log 2>&1&
+    log_end_msg $?
+    ;;
+  stop)
+	log_daemon_msg "Stopping ${NAME}" "${NAME}"
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PID_FILE
+	log_end_msg $?
+	rm -f $SONONEST_PID_FILE
+	;;
+  restart)
+	log_daemon_msg "Restarting ${NAME}" "${NAME}"
+	$0 stop
+	$0 start
+	log_end_msg $?
+	;;
+  *)
+    echo "Usage: /etc/init.d/${0} {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0

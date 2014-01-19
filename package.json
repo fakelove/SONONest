@@ -1,0 +1,21 @@
+{ "name": "sononest"
+, "version": "0.0.1"
+, "description": "caches echonest information from sonos playlist updates"
+, "author": "FakeLove"
+, "dependencies":
+  { "async": "0.2.x"
+  , "coffee-script": "1.6.x"
+  , "echojs": "0.1.x"
+  , "restify": "2.6.x"
+  , "mongolian": "0.1.x"
+  , "node-osc": "0.2.x"
+  , "sonos": "git+http://github.com/fakelove/node-sonos.git"
+  , "sonos-discovery": "git+http://github.com/fakelove/node-sonos-discovery.git"
+  , "swagger-doc": "0.2.x"
+  , "toobusy": "0.2.x"
+  }
+, "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/jedahan/sononest.git"
+  }
+}
