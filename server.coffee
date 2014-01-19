@@ -15,7 +15,7 @@ Sonos = require 'Sonos'
 search = Sonos.search()
 
 osc = require 'node-osc'
-client = new osc.Client '10.21.69.255', 7777
+client = new osc.Client 'YOUR.NETWORK.MULTICAST.ADDR', 7777
 client._sock.on 'listening', ->
     client._sock.setBroadcast(true)
     client._sock.setMulticastTTL(255)
