@@ -6,7 +6,7 @@ toobusy = require 'toobusy'
 async = require 'async'
 
 echojs = require 'echojs'
-echo = echojs key: "2XVFEBTDGX1C0GSHK"
+echo = echojs key: "ECHONEST_KEY"
 
 SonosDiscovery = require 'sonos-discovery'
 discovery = new SonosDiscovery()
